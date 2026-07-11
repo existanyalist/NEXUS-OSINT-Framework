@@ -1,0 +1,7 @@
+__pycache__/
+.pytest_cache/
+osint_cache.json
+favorites.json
+saved_links.txt
+*_OSINT_Raporu.txt
+*.log
