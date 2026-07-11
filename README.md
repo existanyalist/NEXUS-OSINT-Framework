@@ -1,5 +1,3 @@
-<div align="center">
-
 # 🕸️ NEXUS-OSINT
 
 ### *Next-Generation Terminal-Based Open Source Intelligence & CTI Framework*
@@ -13,24 +11,20 @@
 
 ---
 
-[🇹🇷 Türkçe Dokümantasyon İçin Buraya Tıklayın](#-türkçe-dokümantasyon)
-
----
-
 <!-- ANIMATED TERMINAL GIF AREA -->
-<img src="https://raw.githubusercontent.com/existanyalist/NEXUS-OSINT-Framework/main/assets/terminal_demo.gif" alt="Nexus-OSINT Terminal Demo" width="800" style="max-width:100%; border-radius: 8px;">
-
-</div>
+<p align="center">
+  <img src="https://raw.githubusercontent.com/existanyalist/NEXUS-OSINT-Framework/main/assets/terminal_demo.gif" alt="Nexus-OSINT Terminal Demo" width="800" style="max-width:100%; border-radius: 8px;">
+</p>
 
 ---
 
 ## 🚀 Key Features
 
-*   **⚡ Advanced TUI:** A responsive, highly readable, and colorful terminal user interface powered by the `Rich` engine.
-*   **📡 Active Intelligence:** Instantly query Shodan InternetDB to extract open ports, vulnerabilities (CVEs), and hostnames without an API key.
-*   **📝 Automated Reporting:** Take real-time notes on targets and export structured, timestamped intelligence reports effortlessly.
-*   **🔌 Offline Mode (Cache):** Continue working inside air-gapped networks or during outages using the locally cached database layout.
-*   **⭐ Bookmarks Engine:** Save your high-priority OSINT assets to a centralized favorites panel for single-keystroke execution.
+* **⚡ Advanced TUI:** A responsive, highly readable, and colorful terminal user interface powered by the `Rich` engine.
+* **📡 Active Intelligence:** Instantly query Shodan InternetDB to extract open ports, vulnerabilities (CVEs), and hostnames in seconds without requiring an API key.
+* **📝 Automated Reporting:** Take real-time notes on targets and export structured, timestamped intelligence reports effortlessly.
+* **🔌 Offline Mode (Cache):** Continue working inside air-gapped networks or during outages using the locally cached database layout.
+* **⭐ Bookmarks Engine:** Save your high-priority OSINT assets to a centralized favorites panel for single-keystroke execution.
 
 ---
 
@@ -42,7 +36,7 @@ Traditional threat intelligence workflows often result in browser tab clutter an
 
 ## 🏗️ Architecture & Core Components
 
-### 1. Active Intelligence (Shodan Integration)
+### 1. Active Intelligence Node
 Queries the target network peripheral infrastructure dynamically using asynchronous endpoint lookups. It strips out noise and maps exposure levels.
 
 ### 2. Reporting Engine
@@ -73,7 +67,7 @@ pip install -r requirements.txt --break-system-packages
 # Launch the engine
 python osint_master.py
 ⌨️ Usage & Keyboard Shortcuts
-When initialization completes, you can globally hook a active target profile or bypass straight to database navigation.
+When initialization completes, you can globally hook an active target profile or bypass straight to database navigation.
 
 [A] Active Intelligence Mode: Triggers automated Shodan exposure mapping on specified target IP vectors.
 
@@ -115,7 +109,7 @@ Initialize your local branch configuration (git checkout -b feature/AmazingFeatu
 
 Commit your optimization modifications (git commit -m 'Add some AmazingFeature').
 
-Push directly into your upstream origin dal (git push origin feature/AmazingFeature).
+Push directly into your upstream origin branch (git push origin feature/AmazingFeature).
 
 Open an official Pull Request for validation.
 
@@ -133,35 +127,3 @@ This deployment is engineered strictly for authorized academic research, offensi
 
 📄 License
 Distributed entirely under the conditions of the MIT License. Check out LICENSE for structural context.
-
-🇹🇷 Türkçe Dokümantasyon
-Terminal Tabanlı Yeni Nesil Açık Kaynak İstihbaratı & CTI Çerçevesi
-Nexus-OSINT, Siber Tehdit İstihbaratı (CTI) analistleri, sızma testi uzmanları ve OSINT araştırmacıları için Existanyalist tarafından özel olarak optimize edilmiş, gelişmiş bir terminal terminal arayüzüdür. Tarayıcı sekmelerinde kaybolmak yerine tüm operasyonel bilgi akışını tek ekran üzerinden yönetmenizi sağlar.
-
-⚙️ Temel Kabiliyetler
-API anahtarı olmadan Shodan üzerinden zafiyet (CVE) ve açık port analizi.
-
-Canlı hedef takibi ve otomatik tarih damgalı istihbarat raporlaması.
-
-İnternet kesintilerinde devreye giren yerel JSON önbellek mimarisi.
-
-2 tuşu ile ağaç yapısındaki herhangi bir aracı favori cephaneliğinize ekleme lüksü.
-
-🚀 Hızlı Kurulum
-Bash
-git clone [https://github.com/existanyalist/NEXUS-OSINT-Framework.git](https://github.com/existanyalist/NEXUS-OSINT-Framework.git)
-cd NEXUS-OSINT-Framework
-pip install -r requirements.txt --break-system-packages
-python osint_master.py
-⌨️ Kısayol Matrisi
-[A] Active Intel: Hedef IP adresinin güvenlik açıklıklarını listeler.
-
-[T] Hedef Değiştir: Operasyonel odağı başka bir profile kaydırır.
-
-[N] Not Ekle: İnceleme altındaki hedefe anlık analiz girdisi yazar.
-
-[F] Favoriler: Sık kullanılan araçları tek ekranda toplar.
-
-[0] Geri / Çıkış: Üst menü katmanına döner veya uygulamayı kapatır.
-
-Developed with 🖤 by Existanyalist
