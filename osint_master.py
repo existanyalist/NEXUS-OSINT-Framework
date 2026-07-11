@@ -5,7 +5,6 @@ import webbrowser
 import requests
 from datetime import datetime
 
-# Arayüz için Rich kütüphanesi
 try:
     from rich.console import Console
     from rich.table import Table
@@ -18,18 +17,14 @@ except ImportError:
 
 console = Console()
 
-# Yapılandırma Dosyaları
 CACHE_FILE = "osint_cache.json"
 FAVS_FILE = "favorites.json"
 URL = "https://raw.githubusercontent.com/lockfale/OSINT-Framework/master/public/arf.json"
 
-# Global Değişkenler
 target_name = ""
 favorites = []
 
-# --- 1. ÇEVRİMDIŞI ÖNBELLEK VE VERİ ÇEKME ---
 def load_data():
-    """Veriyi GitHub'dan çeker, internet yoksa veya hata varsa önbellekten yükler."""
     if os.path.exists(CACHE_FILE):
         console.print(f"[bold yellow][*] {CACHE_FILE} önbellek dosyası bulundu. Kontrol ediliyor...[/bold yellow]")
         
@@ -42,7 +37,7 @@ def load_data():
         response = requests.get(URL, headers=headers, timeout=5)
         response.raise_for_status()
         data = response.json()
-        # Yeni veriyi önbelleğe kaydet
+
         with open(CACHE_FILE, "w", encoding="utf-8") as f:
             json.dump(data, f)
         console.print("[bold green][+] Veriler GitHub'dan başarıyla çekildi ve önbelleğe kaydedildi.[/bold green]")
@@ -57,7 +52,6 @@ def load_data():
             console.print("[bold red][!] Önbellek dosyası yok ve internete bağlanılamıyor. Çıkış yapılıyor.[/bold red]")
             sys.exit(1)
 
-# --- 2. FAVORİLER SİSTEMİ ---
 def load_favorites():
     global favorites
     if os.path.exists(FAVS_FILE):
@@ -93,7 +87,6 @@ def display_favorites():
     console.print(table)
     input("\nDevam etmek için ENTER...")
 
-# --- 3. HEDEF PROFİLİ VE RAPORLAMA ---
 def add_note():
     if not target_name:
         console.print("[bold red][-] Aktif bir hedef profili yok. Lütfen ana menüden bir hedef belirleyin.[/bold red]")
@@ -107,7 +100,6 @@ def add_note():
         f.write(f"[{timestamp}] - {note}\n")
     console.print(f"[bold green][+] Not '{filename}' dosyasına kaydedildi![/bold green]")
 
-# --- 4. AKTİF İSTİHBARAT (API ENTEGRASYONU) ---
 def active_intelligence():
     console.clear()
     panel = Panel("[bold cyan]Aktif İstihbarat Modülü (Shodan InternetDB API)[/bold cyan]\nBu modül hedef IP adresinin açık portlarını ve host isimlerini ücretsiz sorgular.", style="green")
@@ -150,7 +142,6 @@ def active_intelligence():
         
     input("\nDevam etmek için ENTER...")
 
-# --- 5. GELİŞMİŞ ARAYÜZ (TUI) VE MENÜ YÖNETİMİ ---
 def handle_url_node(node):
     while True:
         console.clear()
@@ -183,7 +174,6 @@ def display_menu(node, path=[]):
         console.clear()
         current_path = " > ".join(path) if path else "Kök Dizin"
 
-        # Başlık Paneli (Artık target_name sorunsuz okunabilir)
         header_text = f"[bold white]Hedef Profil:[/bold white] [bold red]{target_name if target_name else 'BELİRLENMEDİ'}[/bold red] | [bold white]Konum:[/bold white] [bold cyan]{current_path}[/bold cyan]"
         console.print(Panel(header_text, title="[bold magenta]Exist-OSINT FRAMEWORK TERMINAL[/bold magenta]"))
 
@@ -227,7 +217,6 @@ def display_menu(node, path=[]):
         elif choice == 'A' and not path:
             active_intelligence()
         elif choice == 'T' and not path:
-            # global target_name <--- BURADAN SİLDİK
             target_name = Prompt.ask("[bold yellow]Hedefin adını veya takma adını girin[/bold yellow]")
             console.print(f"[bold green][+] Hedef '{target_name}' olarak ayarlandı. Raporlama aktif.[/bold green]")
             input("\nDevam etmek için ENTER...")
@@ -249,25 +238,13 @@ def display_menu(node, path=[]):
                 pass
 if __name__ == "__main__":
     import pyfiglet
-    
     console.clear()
-    
-    # --- HAVALI ASCII ART AÇILIŞI ---
-    # Pyfiglet kullanarak "Existanyalist" ismini büyük ve şekilli yazdırıyoruz
     ascii_art = pyfiglet.figlet_format("Existanyalist", font="slant")
-    
-    # Yazıyı magenta renginde ve kalın olarak ekrana basıyoruz
     console.print(f"[bold magenta]{ascii_art}[/bold magenta]")
-    
-    # Alt bilgi kısmını yazdırıyoruz
     console.print(Panel("[bold cyan]NEXUS-OSINT CORE ENGINE v1.0[/bold cyan]\n[white]Developed by Existanyalist[/white]", style="magenta"))
     console.print("\n")
-    
-    # Favorileri ve verileri yükleme adımları
     load_favorites()
     data_tree = load_data()
-    
-    # Kullanıcıdan açılışta opsiyonel olarak hedef ismi al
     target_opt = Prompt.ask("\n[bold cyan]Bir araştırma hedefi belirlemek ister misiniz? (İsim girin veya boş geçmek için ENTER)[/bold cyan]")
     if target_opt.strip():
         target_name = target_opt.strip()
